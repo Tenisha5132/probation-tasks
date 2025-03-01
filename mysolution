@@ -1,0 +1,16 @@
+IDOR challenge(my approach):
+after logging in i see the profile page then the url format 
+then again i will loging with different username now again examine the url 
+now i found that the parameter is changing according to the user loggin(sometimes we have to find the patterns to identify by applying some logic) then we come to the note that this id has something to do with the user login 
+then i tried to manipulate it by changing the id values at some point or the other i was logged into a different profile of some other user then gave differnet values to the id again logged into different user(THIS IS IDOR VULNERBILITY)
+by this we  the attacker could access sensitive information or perform actions on behalf of the other user, such as changing account settings or viewing private data.
+
+COMMAND INJECTION(my approach):
+here obivously there wil be a box to take the input when ever we see a input feild we try xss,sqli,command injection....
+for this xss,sqli didn't give any output but for commands like ; ls , ;ls; i am getting some filenames so it has command injection vulnerbility 
+see the names are filenames or directories if they are directories or folder go into it and search for the file by using command like ; ls challenges; if this again give anything check for that also until you get something useful 
+then in the given filenames the flag may be stored so by googling we can get some command like ; find / -name flag.txt 2>/dev/null; # (as most commonly f;ag are stored with some common files name so in the place of flag.txt you can search any file you wnat the 2>/dev/null is to ignore the error messages in the output 
+by doing soo we can get upto the flag
+
+XSS(my approach):
+
