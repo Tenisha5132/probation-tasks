@@ -1,3 +1,14 @@
+BLIND SQLI(my approach):
+first we see the disallowed characters and keyword to check if it is blind sqli or not we use sleep
+it resonds to it then it is a blind sqli so then we see that in the page it is said that we have to get the password(for a admin user)
+then we try t give a true statment like ?pw=' || 1=1 -- - then we get an output like hello guest and we also query is displayed 
+it says like id='guest' so if in the pw field we pass a true statement means we get logged into as hello guest 
+then i try ?pw=' ||id='admin' %26%26 pw=' || 1=1 -- - like this it doesn't work now we have to get the password for id admin
+now we have two way one we can manually check every character via the url or by writing a python script which check for the characters in the password
+by this we can find the length http://localhost/sqli_challenge/index.php?pw=' || id='admin' %26%26 length(pw)=19#(the length of the password is 19) and the character by ?pw=' || id='admin' %26%26 SUBSTR(pw%2C x%2C 1)='y' --%20 by changing the x and y positions we cna get the chracters in the password x is the position a nd y is the charcters in that position
+for python script give the range of the characters use for loop to iterate through each character in that position
+we get the password as adminpwisasecret123
+
 IDOR challenge(my approach):
 after logging in i see the profile page then the url format 
 then again i will loging with different username now again examine the url 
